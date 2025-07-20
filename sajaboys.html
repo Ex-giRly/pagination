@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Simple Photo Gallery (3 Images Total)</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333333;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .gallery-container {
+            background-color: #ffffff;
+            border: 1px solid #dddddd;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 800px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-title {
+            font-size: 28px;
+            color: #007bff;
+            margin-bottom: 25px;
+        }
+
+        .photo-page {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            min-height: 350px;
+        }
+
+        .photo-page.active {
+            display: flex;
+        }
+
+        .gallery-photo {
+            width: 400px;
+            height: 300px;
+            object-fit: cover;
+            border: 2px solid #cccccc;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .pagination-controls {
+            margin-top: 20px;
+        }
+
+        .pagination-controls button {
+            background-color: transparent;
+            color: #666666;
+            padding: 5px 10px;
+            border: 1px dashed #999999;
+            border-radius: 0;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 0 10px;
+            text-transform: uppercase;
+            transition: none;
+        }
+
+        .pagination-controls button:hover {
+            background-color: #e0e0e0;
+            color: #333333;
+            border-color: #777777;
+        }
+
+        .pagination-controls button:disabled {
+            background-color: #f0f0f0;
+            color: #aaaaaa;
+            border-color: #dddddd;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container gallery-container">
+
+        <div class="photo-page active" id="page1">
+            <img src="blackmanga.jpeg" alt="A beautiful sunset"
+                class="img-fluid gallery-photo">
+        </div>
+
+        <div class="photo-page" id="page2">
+            <img src="hehe.jpeg" alt="Green forest trees"
+                class="img-fluid gallery-photo">
+        </div>
+
+        <div class="photo-page" id="page3">
+            <img src="imagery.jpeg" alt="Busy city street"
+                class="img-fluid gallery-photo">
+        </div>
+
+        <div class="pagination-controls mt-4">
+            <button id="prevBtn" class="btn btn-primary me-2">Previous</button>
+            <button id="nextBtn" class="btn btn-primary">Next</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+        crossorigin="anonymous"></script>
+    <script>
+        const photoPages = document.querySelectorAll('.photo-page');
+        const prevButton = document.getElementById('prevBtn');
+        const nextButton = document.getElementById('nextBtn');
+
+        let currentPageIndex = 0;
+
+        function showPage(index) {
+            photoPages.forEach((page) => {
+                page.classList.remove('active');
+            });
+
+            photoPages[index].classList.add('active');
+
+            prevButton.disabled = (index === 0);
+            nextButton.disabled = (index === photoPages.length - 1);
+        }
+
+        prevButton.addEventListener('click', () => {
+            if (currentPageIndex > 0) {
+                currentPageIndex--;
+                showPage(currentPageIndex);
+            }
+        });
+
+        nextButton.addEventListener('click', () => {
+            if (currentPageIndex < photoPages.length - 1) {
+                currentPageIndex++;
+                showPage(currentPageIndex);
+            }
+        });
+
+        showPage(currentPageIndex);
+    </script>
+
+</body>
+
+</html>
+
+
+
+
+        
